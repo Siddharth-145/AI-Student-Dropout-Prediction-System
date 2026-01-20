@@ -5,18 +5,12 @@ import matplotlib.pyplot as plt
 from sklearn.model_selection import train_test_split
 from sklearn.ensemble import RandomForestClassifier
 
-# =============================
-# PAGE CONFIG
-# =============================
 st.set_page_config(
     page_title="AI Student Dropout Prediction System",
     page_icon="🎓",
     layout="wide"
 )
 
-# =============================
-# CUSTOM CSS (Professional UI)
-# =============================
 st.markdown(
     """
     <style>
@@ -37,9 +31,6 @@ st.markdown(
     unsafe_allow_html=True
 )
 
-# =============================
-# DATASET (Synthetic but realistic)
-# =============================
 data = {
     'attendance': [65, 70, 80, 90, 85, 60, 75, 88, 92, 55, 78, 83, 68, 74, 95, 50, 58, 62, 72, 81],
     'gpa': [5.5, 6.0, 7.2, 8.5, 8.0, 5.0, 6.8, 8.2, 9.0, 4.5, 7.0, 7.5, 6.0, 6.5, 9.2, 4.0, 5.0, 5.8, 6.7, 7.8],
@@ -58,15 +49,9 @@ X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_
 model = RandomForestClassifier(n_estimators=250, random_state=42)
 model.fit(X_train, y_train)
 
-# =============================
-# HEADER
-# =============================
 st.title("🎓 AI-Based Student Dropout Prediction & Retention System")
 st.markdown("<p style='font-size:17px;'>A professional AI dashboard that predicts dropout risk, explains the reasons using Explainable AI, and provides actionable feedback.</p>", unsafe_allow_html=True)
 
-# =============================
-# SIDEBAR INPUT
-# =============================
 st.sidebar.header("📘 Student Profile")
 attendance = st.sidebar.slider("Attendance (%)", 0, 100, 75)
 gpa = st.sidebar.slider("Current GPA", 0.0, 10.0, 7.0)
@@ -76,9 +61,6 @@ stress_level = st.sidebar.slider("Stress Level (1–10)", 1, 10, 5)
 financial_issue = st.sidebar.selectbox("Financial Issues", ["No", "Yes"])
 fin_val = 1 if financial_issue == "Yes" else 0
 
-# =============================
-# MAIN LOGIC
-# =============================
 if st.sidebar.button("🚀 Run AI Analysis"):
 
     input_data = np.array([[attendance, gpa, internal_marks, study_hours, stress_level, fin_val]])
